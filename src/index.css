@@ -1,0 +1,38 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* IMPORTANT: In "styled" mode you must add the PrimeReact Theme here. Do NOT include in "unstyled" mode */
+@import 'primereact/resources/themes/saga-green/theme.css' layer(primereact);
+
+@layer tailwind-base {
+  @tailwind base;
+}
+
+@layer tailwind-utilities {
+  @tailwind components;
+  @tailwind utilities;
+}
+
+/* En tu archivo CSS global */
+.p-dialog .p-dialog-header .p-dialog-header-icon {
+  /* background-color: #4CAF50 !important;  */
+  color: #e5dfdf !important; /* Color rojo para los iconos */
+}
+
+.p-dialog .p-dialog-header .p-dialog-header-close {
+  /* background-color: #4CAF50 !important; Fondo verde para el botón cerrar */
+  color: white !important;
+}
+
+@layer primereact {
+  .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
+    padding: 0.5rem 0.5rem !important;
+  }
+}
+
+@layer primereact {
+  .p-button {
+    padding: 0.35rem 0.3rem !important;
+  }
+}
