@@ -2,6 +2,7 @@ import { Fragment, MouseEvent, ReactElement } from "react";
 import { Divider } from "primereact/divider";
 import { Button } from "primereact/button";
 import { FaFilter, FaPlus } from "react-icons/fa";
+import { Tag } from "primereact/tag";
 
 interface PropsHeaderTemplate {
     title: string;
@@ -9,6 +10,22 @@ interface PropsHeaderTemplate {
     onAdd: () => void;
     onFilters: (e: MouseEvent<HTMLElement>) => void;
 }
+
+const getSeverity = (status: number) => {
+    switch (status) {
+        case 1:
+            return 'success';
+
+        case 2:
+            return 'warning';
+
+        case 3:
+            return 'danger';
+
+        default:
+            return null;
+    }
+};
 
 export const HeaderPassword = () => {
     return <h6>Elige una contraseña</h6>;
@@ -54,3 +71,6 @@ export const HeaderTemplate = ({ title, onAdd, onFilters  }: PropsHeaderTemplate
     )
 }
 
+export const statusBodyTemplate = (item: any) => {
+    return <Tag value={item.estado} severity={getSeverity(item.idestado)}></Tag>;
+};

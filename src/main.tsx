@@ -9,7 +9,7 @@ import 'primereact/resources/primereact.min.css';
 import { addLocale, PrimeReactProvider } from 'primereact/api';
 
 import { TanStackProvider } from './plugins/TanStackProvider.tsx';
-import { AuthProvider } from './context/index.ts';
+//import { AuthProvider } from './context/index.ts';
 import { router } from './router/router.tsx';
 import { Toast } from 'primereact/toast';
 import ToastService from './plugins/ToastService.ts';

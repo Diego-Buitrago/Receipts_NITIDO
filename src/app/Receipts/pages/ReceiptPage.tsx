@@ -533,7 +533,6 @@ const ReceiptPage = () => {
               label="Exportar PDF"
               icon={<FaFilePdf className="mr-2" />}
               severity="success"
-              size="large"
               loading={isGenerating}
               disabled={fields.length === 0}
             />
