@@ -2,7 +2,7 @@ import axios from "axios";
 import Cookies from "js-cookie";
 
 const axiosApi = axios.create({
-    baseURL: process.env.NODE_ENV === "development" ? 'http://localhost:5000' : 'https://nitido-back.vercel.app',
+    baseURL: import.meta.env.DEV ? 'http://localhost:5000' : 'https://nitido-back.vercel.app',
     // headers: {
     //     Authorization: `Bearer ${token}`
     // }
