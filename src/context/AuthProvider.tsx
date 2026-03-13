@@ -2,13 +2,13 @@ import { FC, JSX, useEffect, useReducer, useState } from 'react';
 // UI
 import { ProgressSpinner } from 'primereact/progressspinner';
 // UTILS
-//import { axiosApi } from '../api/axiosApi';
+import { axiosApi } from '../api/axiosApi';
 import { authReducer } from './authReducer';
 import { AuthContext } from './AuthContext';
-// import { LoginForm } from '../interfaces/login';
-//import { AxiosError } from '../interfaces/general';
-//import ToastService from '../plugins/ToastService';
-// import Cookies from "js-cookie";
+import { LoginForm } from '../interfaces/login';
+import { AxiosError } from '../interfaces/general';
+import ToastService from '../plugins/ToastService';
+import Cookies from "js-cookie";
 
 export interface AuthState {
     isLoggedIn: boolean;
@@ -39,48 +39,45 @@ export const AuthProvider: FC<Props> = ({children}) => {
     }, []);
 
     const checkToken = async() => {
-        setValidating(true); // TODO: Quitar esto
-        dispatch({ type: 'Auth - Logout' }); // TODO: Quitar esto
-        // if (!Cookies.get("tokenElGranCacao")) return setValidating(false);
+        if (!Cookies.get("tokenNITIDO")) return setValidating(false);
 
-        // try {
-        //     const { data } = await axiosApi.get('validate_token');
-        //     const { token, profile } = data;
-        //     dispatch({ type: 'Auth - Login', payload: { token, profile} });
-        //     setValidating(false);
-        //     return true;
-        // } catch (error) {
-        //     console.log('error', error);
-        //     setValidating(false);
-        //     logout();
-        //     ToastService.apiError(error as AxiosError);
-        //     return false;
-        // }
+        try {
+            const { data } = await axiosApi.get('validate_token');
+            const { token, profile } = data;
+            dispatch({ type: 'Auth - Login', payload: { token, profile} });
+            setValidating(false);
+            return true;
+        } catch (error) {
+            console.log('error', error);
+            setValidating(false);
+            logout();
+            ToastService.apiError(error as AxiosError);
+            return false;
+        }
     }
 
     // if (validating) return (<div className="flex items-center justify-center min-h-screen"><Spinner size="lg" /></div>)
 
-    const loginUser = async(_user: string, _password: string)/* : Promise<boolean> */ => {
-        // const params = { user, password } as LoginForm;
-        // try {
-        //     const { data } = await axiosApi.post('/start_section', params);
-        //     const { token, profile } = data;
+    const loginUser = async(user: string, password: string)/* : Promise<boolean> */ => {
+        const params = { user, password } as LoginForm;
+        try {
+            const { data } = await axiosApi.post('/start_section', params);
+            const { token, profile } = data;
           
-        //     Cookies.set("tokenElGranCacao", token);
-        //     dispatch({ type: 'Auth - Login', payload: { token, profile} });
-        //     return true;
+            Cookies.set("tokenNITIDO", token);
+            dispatch({ type: 'Auth - Login', payload: { token, profile} });
+            return true;
 
-        // } catch (error) {
-        //     console.log('error', error);
-        //     ToastService.apiError(error as AxiosError);
-        //     return false
-        // }
-        return true;
+        } catch (error) {
+            console.log('error', error);
+            ToastService.apiError(error as AxiosError);
+            return false
+        }
     }
 
     const logout = () => {
-        // dispatch({ type: 'Auth - Logout' });
-        // Cookies.remove("tokenElGranCacao");
+        dispatch({ type: 'Auth - Logout' });
+        Cookies.remove("tokenNITIDO");
     }
 
     if (validating) return (<div className="flex items-center justify-center min-h-screen"><ProgressSpinner /></div>)

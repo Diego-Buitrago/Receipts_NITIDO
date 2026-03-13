@@ -4,12 +4,12 @@ import { RouterProvider } from 'react-router-dom';
 
 // Importar los estilos de PrimeReact
 import './index.css';
-import 'primereact/resources/themes/saga-green/theme.css'; // O el tema que estés usando
+import 'primereact/resources/themes/lara-light-indigo/theme.css'; // O el tema que estés usando
 import 'primereact/resources/primereact.min.css';
 import { addLocale, PrimeReactProvider } from 'primereact/api';
 
 import { TanStackProvider } from './plugins/TanStackProvider.tsx';
-//import { AuthProvider } from './context/index.ts';
+import { AuthProvider } from './context/AuthProvider.tsx';
 import { router } from './router/router.tsx';
 import { Toast } from 'primereact/toast';
 import ToastService from './plugins/ToastService.ts';
@@ -46,9 +46,9 @@ const App = () => {
       <Toast ref={toastRef} position="top-right" />
       <TanStackProvider>
         <PrimeReactProvider value={{ locale: 'es' }}>
-          {/* <AuthProvider> */}
+          <AuthProvider>
             <RouterProvider router={router} />
-          {/* </AuthProvider> */}
+          </AuthProvider>
         </PrimeReactProvider>
       </TanStackProvider>
     </>

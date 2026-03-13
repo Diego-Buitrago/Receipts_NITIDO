@@ -10,8 +10,8 @@ export interface AxiosError extends Error {
 }
 
 export interface BasicForm {
-  nombre: string;
-  idestado: number;
+  name: string;
+  stateId: number;
 }  
 
 export interface BasicFilters {
@@ -21,5 +21,5 @@ export interface BasicFilters {
 
 export interface BasicList {
   id: number;
-  nombre: string;
+  name: string;
 }

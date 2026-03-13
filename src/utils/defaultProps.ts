@@ -59,13 +59,14 @@ export const propsCalendar = {
     yearNavigator: true,
     yearRange: "2000:2050",
     locale: "es",
+    className: "p-inputtext-sm w-full",
 };
 
 export const propsDialog = {
     maximizable: true,
     draggable: true,   
     visible: true,
-    headerStyle: { backgroundColor: "#0f766e", color: 'white', padding: "1rem" },
+    headerStyle: { backgroundColor: "#4f46e5", color: 'white', padding: "1rem" },
     breakpoints: { "1584px": "40vw", "1200px": "50vw", "960px": "80vw", "672px": "100vw" },
     style: { width: "45vw" }
 };

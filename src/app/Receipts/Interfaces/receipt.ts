@@ -1,49 +1,60 @@
-export interface ReceiptItem {
-  id: string;
-  description: string;
-  quantity: number;
-  unitPrice: number;
-  subtotal: number;
-}
-
-export interface ReceiptForm {
+export interface DataReceipt {
+  receiptId: number;
+  prefix: string;
   receiptNumber: string;
   date: Date;
-  // Customer data
-  customerName: string;
-  customerDocument: string;
-  customerPhone: string;
-  customerAddress: string;
-  // Receipt items
-  items: ReceiptItem[];
-  // Totals
+  customerId: number;
+  customer: string;
+  typePaymentId: number;
+  typePayment: string;
   subtotal: number;
   discount: number;
   tax: number;
   total: number;
-  // Payment
-  paymentMethod: string;
-  notes: string;
+  observation: string;
+  stateId: number;
+  state: string;
+  details?: ReceiptDetail[];
 }
 
-export interface PaymentMethod {
+export interface ReceiptDetail {
+  recDetId: number;
+  productId: number;
+  product: string;
+  quantity: number;
+  price: number;
+  total: number;
+}
+
+export interface ReceiptForm {
+  date: Date;
+  customerId: number | null;
+  typePaymentId: number | null;
+  subtotal: number;
+  discount: number;
+  tax: number;
+  total: number;
+  observation: string;
+  stateId: number;
+  details: ReceiptDetailForm[];
+}
+
+export interface ReceiptDetailForm {
+  productId: number;
+  quantity: number;
+  price: number;
+}
+
+export interface ReceiptFilters {
+  receiptNumber: string;
+  customerId: number | null;
+  typePaymentId: number | null;
+  stateId: number | null;
+  date: Date[] | null;
+}
+
+export interface CountReceiptsByStatus {
+  quantity: number;
   name: string;
-  value: string;
+  id: number;
 }
-
-export const PAYMENT_METHODS: PaymentMethod[] = [
-  { name: 'Efectivo', value: 'Efectivo' },
-  { name: 'Tarjeta de Crédito', value: 'Tarjeta de Crédito' },
-  { name: 'Tarjeta de Débito', value: 'Tarjeta de Débito' },
-  { name: 'Transferencia', value: 'Transferencia' },
-  { name: 'Nequi', value: 'Nequi' },
-  { name: 'Daviplata', value: 'Daviplata' },
-];
-
-// Datos del vendedor
-export const SELLER_INFO = {
-  name: 'Gabriel Jaime Velásquez Álvarez',
-  document: '3438630',
-  address: 'Km1+600 vía llanogrande el tablazo Rionegro Antioquia',
-  phone: '3183807303',
-};

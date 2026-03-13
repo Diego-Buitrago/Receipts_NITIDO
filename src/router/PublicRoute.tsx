@@ -9,6 +9,6 @@ interface PublicRouteProps {
 export const PublicRoute: FC<PublicRouteProps> = ({ children  }) => {  
     const { isLoggedIn } = useContext(AuthContext);
 
-    return isLoggedIn ? <Navigate to="/auth/sales" /> : children;
+    return isLoggedIn ? <Navigate to="/app/receipts" /> : children;
   
 }

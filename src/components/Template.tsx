@@ -1,14 +1,29 @@
-import { Fragment, MouseEvent, ReactElement } from "react";
+import { Fragment, MouseEvent, ReactElement, useMemo } from "react";
 import { Divider } from "primereact/divider";
 import { Button } from "primereact/button";
+import { Skeleton } from "primereact/skeleton";
 import { FaFilter, FaPlus } from "react-icons/fa";
 import { Tag } from "primereact/tag";
+import { MdDelete, MdEdit } from "react-icons/md";
+import { DeletePopup } from "./DeletePopup";
 
 interface PropsHeaderTemplate {
     title: string;
     label?: string;
     onAdd: () => void;
     onFilters: (e: MouseEvent<HTMLElement>) => void;
+}
+
+interface PropsActionTemplate {
+   onClick:  () => void;
+   onConfirm:  () => void;
+   titleEdit: string;
+   titleDelete: string;
+   titleConfirm: string;
+   editIcon?: ReactElement;
+   deleteIcon?: ReactElement;
+   isEdit?: boolean;
+   isDelete?: boolean;
 }
 
 const getSeverity = (status: number) => {
@@ -59,6 +74,7 @@ export const HeaderTemplate = ({ title, onAdd, onFilters  }: PropsHeaderTemplate
                     // label={label}
                     onClick={onAdd}
                     // disabled={disabled}
+                    severity="success"
                 />
                 <Button
                     rounded
@@ -71,6 +87,60 @@ export const HeaderTemplate = ({ title, onAdd, onFilters  }: PropsHeaderTemplate
     )
 }
 
+export const ActionTemplate = ({ onClick, onConfirm, titleEdit, titleDelete, titleConfirm, editIcon, deleteIcon, isEdit = true, isDelete = true }: PropsActionTemplate): ReactElement => {
+
+    const EditIcon = useMemo<ReactElement>(() => {
+        return editIcon || <MdEdit size={24} />;
+    }, [editIcon]);
+
+    const DeleteIcon = useMemo<ReactElement>(() => {
+        return deleteIcon || <MdDelete size={24} />;
+    }, [deleteIcon]);
+
+    return (
+        <div className="flex gap-1 justify-center">
+            {isEdit && (
+                <Button
+                    rounded
+                    severity="warning"
+                    onClick={onClick}
+                    title={titleEdit}
+                    icon={EditIcon}
+                />
+            )}
+            {isDelete && (
+                <DeletePopup
+                    title={titleConfirm}
+                    onConfirm={onConfirm}
+                >
+                <Button
+                    rounded 
+                    severity="danger"
+                    icon={DeleteIcon}
+                    title={titleDelete}
+                />
+                </DeletePopup>
+            )}
+        </div>
+    )
+}
+
+export const SpanLoading = <span style={{ color: "#2196f3" }}>{"Cargando..."}</span>;
+
+export const SkeletonForm = (
+    <div className="field col-12">
+        <Skeleton className="mb-2"></Skeleton>
+        <Skeleton width="20rem" className="mb-2"></Skeleton>
+        <Skeleton width="25rem" className="mb-2"></Skeleton>
+        <Skeleton height="2rem" className="mb-2"></Skeleton>
+
+        <Skeleton className="mb-2"></Skeleton>
+        <Skeleton width="20rem" className="mb-2"></Skeleton>
+        <Skeleton width="25rem" className="mb-2"></Skeleton>
+        <Skeleton height="2rem" className="mb-2"></Skeleton>
+    </div>
+);
+
 export const statusBodyTemplate = (item: any) => {
-    return <Tag value={item.estado} severity={getSeverity(item.idestado)}></Tag>;
+    return <Tag value={item.state} severity={getSeverity(item.stateId)}></Tag>;
 };

@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* IMPORTANT: In "styled" mode you must add the PrimeReact Theme here. Do NOT include in "unstyled" mode */
-@import 'primereact/resources/themes/saga-green/theme.css' layer(primereact);
+@import 'primereact/resources/themes/lara-light-indigo/theme.css' layer(primereact);
 
 @layer tailwind-base {
   @tailwind base;
@@ -16,12 +16,12 @@
 
 /* En tu archivo CSS global */
 .p-dialog .p-dialog-header .p-dialog-header-icon {
-  /* background-color: #4CAF50 !important;  */
+  /* background-color: #4f46e5 !important;  */
   color: #e5dfdf !important; /* Color rojo para los iconos */
 }
 
 .p-dialog .p-dialog-header .p-dialog-header-close {
-  /* background-color: #4CAF50 !important; Fondo verde para el botón cerrar */
+  /* background-color: #4f46e5 !important; Fondo verde para el botón cerrar */
   color: white !important;
 }
 
@@ -33,6 +33,67 @@
 
 @layer primereact {
   .p-button {
-    padding: 0.35rem 0.3rem !important;
+    padding: 0.35rem 0.6rem !important;
+    font-size: 0.875rem !important;
+    min-width: auto !important;
+  }
+
+  .p-button .p-button-icon {
+    font-size: 0.875rem !important;
+  }
+
+  .p-button.p-button-icon-only {
+    width: 2rem !important;
+    height: 2rem !important;
+    padding: 0.35rem !important;
+  }
+
+  /* Warning más amarillo */
+  .p-button.p-button-warning {
+    background-color: #eab308 !important;
+    border-color: #eab308 !important;
+    color: #1f2937 !important;
+  }
+
+  .p-button.p-button-warning:hover {
+    background-color: #ca8a04 !important;
+    border-color: #ca8a04 !important;
+  }
+
+  .p-button.p-button-warning.p-button-outlined {
+    background-color: transparent !important;
+    color: #eab308 !important;
+    border-color: #eab308 !important;
+  }
+
+  .p-button.p-button-warning.p-button-outlined:hover {
+    background-color: rgba(234, 179, 8, 0.1) !important;
+  }
+
+  /* Tag warning más amarillo */
+  .p-tag.p-tag-warning {
+    background-color: #eab308 !important;
+    color: #1f2937 !important;
+  }
+
+  /* Calendar: botón del mismo tamaño que el input */
+  .p-calendar .p-datepicker-trigger {
+    width: auto !important;
+    height: 44px !important;
+    padding: 0.5rem 0.75rem !important;
+  }
+
+  /* Dialog header más compacto */
+  .p-dialog .p-dialog-header {
+    padding: 0.75rem 1rem !important;
+  }
+
+  .p-dialog .p-dialog-header .p-dialog-title {
+    font-size: 1rem !important;
+    font-weight: 600 !important;
+  }
+
+  .p-dialog .p-dialog-content {
+    padding: 0.75rem 1rem !important;
   }
 }
