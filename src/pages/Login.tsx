@@ -14,6 +14,8 @@ import { AuthContext } from "../context";
 import { Button } from "primereact/button";
 import { LoginForm } from "../interfaces/login";
 
+import logo from "../assets/logo.jpeg";
+
 const Login = () => {
 
     const { loginUser } = useContext(AuthContext);
@@ -38,7 +40,7 @@ const Login = () => {
             <div className="rounded-xl bg-gray-800 bg-opacity-50 px-16 py-10 shadow-lg backdrop-blur-md max-sm:px-8 min-w-96">
                 <div className="text-white">
                 <div className="mb-8 flex flex-col items-center">
-                    <img src="/src/assets/logo.jpeg" width="100" alt=""/>
+                    <img src={logo} width="100" alt=""/>
                     <strong className="text-2xl">Nítido</strong>
                     {/* <h4 className="mb-2">Restaurante</h4> */}
                 </div>

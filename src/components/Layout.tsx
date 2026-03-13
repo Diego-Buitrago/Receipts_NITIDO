@@ -13,6 +13,7 @@ import { GiToolbox } from 'react-icons/gi';
 import { AuthContext } from '../context';
 // COMPONENTS
 import { NavBar } from './NavBar';
+import logo from '../assets/logo.jpeg';
 
 type MenuItem = {
     label: string;
@@ -90,7 +91,7 @@ const Layout: FC = () => {
                     <div>
                         <div className='flex flex-column py-2 px-3'>                           
                             <div className='flex justify-content-center align-items-center'>
-                                <img className='rounded-md' src="/src/assets/logo.jpeg" alt="Image" width="50" />
+                                <img className='rounded-md' src={logo} alt="Image" width="50" />
                                 <p className='font-sans text-xl font-semibold text-indigo-600 my-2 mx-3'>NITIDO</p>
                                 <Button
                                     onClick={(e) => hide(e)}
